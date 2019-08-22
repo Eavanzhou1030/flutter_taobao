@@ -8,7 +8,7 @@ import 'package:flutter_taobao/common/config/config.dart';
 class LogInterceptors extends InterceptorsWrapper {
   @override
   onRequest(RequestOptions options) {
-    if(Config.DEBUGE) {
+    if(Config.DEBUG) {
       print("请求Url: ${options.path}");
       print("请求头：" + options.headers.toString());
       if (options.data != null) {
@@ -20,7 +20,7 @@ class LogInterceptors extends InterceptorsWrapper {
 
   @override
   onResponse(Response response) {
-    if(Config.DEBUGE) {
+    if(Config.DEBUG) {
       if(response.data != null) {
         print('返回参数：' + response.toString());
       }

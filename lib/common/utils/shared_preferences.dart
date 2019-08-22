@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// 数据的本地存储 类似sql语句增删改查
+// share_preferences做存储
 class SpUtil {
   static SpUtil _instance;
 
@@ -19,7 +19,7 @@ class SpUtil {
 
   static Future<SpUtil> getInstance() async {
     if(_instance == null) {
-      _instance = SpUtil._();
+      _instance = new SpUtil._();
       await _instance._init();
     }
     return _instance;
@@ -32,7 +32,7 @@ class SpUtil {
     return false;
   }
 
-  // 判断是否存在数据
+  // 判断数据是否存在
   bool hasKey(String key) {
     Set keys = getKeys();
     return keys.contains(key);
@@ -53,17 +53,7 @@ class SpUtil {
     return _spf.getString(key);
   }
 
-  Future<bool> putString(String key, String value) {
-    if(_beforeCheck()) return null;
-    return _spf.setString(key, value);
-  }
-
-  bool getBool(String key) {
-    if(_beforeCheck()) return null;
-    return _spf.getBool(key);
-  }
-
-  Future<bool> putBool(String key, bool value) {
+  Future<bool> putString(String key, bool value) {
     if(_beforeCheck()) return null;
     return _spf.setBool(key, value);
   }
